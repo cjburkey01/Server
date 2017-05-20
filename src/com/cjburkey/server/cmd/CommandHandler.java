@@ -23,15 +23,15 @@ public class CommandHandler {
 	
 	public Cmd fromName(String cmd) {
 		for(Cmd c : cmds) {
-			if(c.getName().equals(cmd)) return c;
+			if(c.getLowered().equals(cmd)) return c;
 		}
 		return null;
 	}
 	
 	public void register() {
 		for(Cmd cmd : cmds) {
-			MainServer.instance.getCommand(cmd.getName()).setExecutor(new CmdExecutor(cmd));
-			Logger.log("Registered cmd: " + cmd.getName());
+			MainServer.instance.getCommand(cmd.getLowered()).setExecutor(new CmdExecutor(cmd));
+			Logger.log("Registered cmd: " + cmd.getLowered());
 		}
 	}
 	

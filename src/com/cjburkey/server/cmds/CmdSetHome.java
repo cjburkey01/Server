@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import com.cjburkey.server.ChatUtil;
 import com.cjburkey.server.cmd.Cmd;
 import com.cjburkey.server.module.Modules;
-import com.cjburkey.server.modules.Home;
+import com.cjburkey.server.pos.Home;
 
 public class CmdSetHome extends Cmd {
 
@@ -14,10 +14,10 @@ public class CmdSetHome extends Cmd {
 	}
 
 	public void onCall(CommandSender executor, String[] args) {
-		if(!(executor instanceof Player)) { ChatUtil.send(executor, "&4You must be in game to use /sethome"); return; }
-		if(args.length != 0) { ChatUtil.send(executor, "&4Usage: /sethome"); return; }
+		if(!(executor instanceof Player)) { ChatUtil.send(executor, "&4You must be in game to use /" + getLowered()); return; }
+		if(args.length != 0) { ChatUtil.send(executor, "&4Usage: /" + getLowered()); return; }
 		Player ply = (Player)  executor;
-		Modules.getModuleHome().setHome(ply.getUniqueId(), new Home(ply.getWorld().getName(), ply.getLocation()));
+		Modules.getModuleHome().setHome(ply.getUniqueId(), new Home(ply.getLocation()));
 		ChatUtil.send(executor, "&2Home set!");
 	}
 	

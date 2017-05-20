@@ -6,6 +6,11 @@ prefix: Thrutus
 version: 1.0.0
 
 commands:
+  refresh:
+    description: Reload the plugin.
+    usage: /<command>
+    permission: thrutus.refresh
+    permission-message: '§4You do not have permission to use /refresh'
   balance:
     description: Check your account balance.
     usage: /<command> [player]
@@ -26,8 +31,44 @@ commands:
     usage: /<command>
     permission: home.del
     permission-message: '§4You do not have permission to use /delhome'
+  claim:
+    description: Claims current chunk.
+    usage: /<command>
+    permission: chunk.claim
+    permission-message: '§4You do not have permission to use /claim'
+  unclaim:
+    description: Unclaims current chunk.
+    usage: /<command>
+    permission: chunk.unclaim
+    permission-message: '§4You do not have permission to use /unclaim'
+  whoclaimed:
+    description: Checks who owns current chunk.
+    usage: /<command>
+    permission: chunk.whoclaim
+    permission-message: '§4You do not have permission to use /whoclaimed'
 
 permissions:
+  thrutus.refresh:
+    description: Allow usage of /refresh
+    default: op
   money.balance:
     description: Allow usage of /balance
+    default: true
+  home.tp:
+    description: Allow usage of /home
+    default: true
+  home.set:
+    description: Allow usage of /sethome
+    default: true
+  home.del:
+    description: Allow usage of /delhome
+    default: true
+  chunk.claim:
+    description: Allow usage of /claim
+    default: true
+  chunk.unclaim:
+    description: Allow usage of /unclaim
+    default: true
+  chunk.whoclaim:
+    description: Allow usage of /whoclaimed
     default: true

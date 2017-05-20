@@ -9,6 +9,8 @@ import com.cjburkey.server.cmds.CmdSetHome;
 import com.cjburkey.server.data.ModuleDataHandler;
 import com.cjburkey.server.module.Module;
 import com.cjburkey.server.module.Modules;
+import com.cjburkey.server.pos.Home;
+import com.cjburkey.server.pos.Position;
 
 public class ModuleHome extends Module {
 	
@@ -22,7 +24,7 @@ public class ModuleHome extends Module {
 		data.loadFromDisk();
 		String stored = data.get(ply.toString());
 		if(stored != null) {
-			return Home.fromString(stored);
+			return new Home(Position.fromString(stored));
 		}
 		return null;
 	}

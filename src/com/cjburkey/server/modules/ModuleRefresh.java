@@ -1,45 +1,33 @@
 package com.cjburkey.server.modules;
 
-import java.util.UUID;
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
+import com.cjburkey.server.ChatUtil;
 import com.cjburkey.server.Logger;
 import com.cjburkey.server.MainServer;
 import com.cjburkey.server.cmd.CommandHandler;
+import com.cjburkey.server.cmds.CmdRefresh;
 import com.cjburkey.server.data.ModuleDataHandler;
 import com.cjburkey.server.event.EventPlayerCache;
 import com.cjburkey.server.module.Module;
 
-public class ModulePlayer extends Module {
+public class ModuleRefresh extends Module {
 	
 	private ModuleDataHandler data;
 	private CommandHandler cmds;
+	private CmdRefresh cmdRefresh;
 	
-	public UUID fromName(String username) {
-		data.loadFromDisk();
-		String out = data.get(username);
-		if(out != null) return UUID.fromString(out);
-		return null;
-	}
-	
-	public String fromUUID(UUID ply) {
-		data.loadFromDisk();
-		String name = data.getKey(ply.toString());
-		if(name != null) return name;
-		return null;
-	}
-	
-	public boolean hasJoined(Player ply) {
-		return fromName(ply.getDisplayName()) != null;
-	}
-	
-	public void join(Player ply) {
-		Logger.log(ply.getDisplayName() + " has joined.");
-		data.set(ply.getDisplayName(), ply.getUniqueId().toString());
-		data.saveToDisk();
+	public void refresh(CommandSender exec) {
+		Logger.log("Reloading...");
+		ChatUtil.send(exec, "&2Reloading...");
+		MainServer.instance.deinit();
+		ChatUtil.send(exec, "&2Unloaded.");
+		MainServer.instance.init();
+		ChatUtil.send(exec, "&2Reloaded. Done refreshing.");
+		Logger.log("Reloaded.");
 	}
 	
 	public String getName() {
-		return "ModuleCacher";
+		return "ModuleRefresh";
 	}
 
 	public Module[] getRequiredModules() {
@@ -58,6 +46,10 @@ public class ModulePlayer extends Module {
 		MainServer.instance.getServer().getPluginManager().registerEvents(new EventPlayerCache(), MainServer.instance);
 		data = new ModuleDataHandler(this);
 		cmds = new CommandHandler();
+		cmdRefresh = new CmdRefresh();
+		
+		cmds.addCmd(cmdRefresh);
+		
 		data.loadFromDisk();
 	}
 

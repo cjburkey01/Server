@@ -30,6 +30,13 @@ public class ModuleDataHandler {
 		return data.get(key);
 	}
 	
+	public String getKey(String value) {
+		for(Entry<String, String> entry : data.entrySet()) {
+			if(entry.getValue().equals(value)) return entry.getKey();
+		}
+		return null;
+	}
+	
 	public int getInt(String key) {
 		try {
 			int val = Integer.parseInt(get(key));

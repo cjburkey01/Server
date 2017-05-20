@@ -21,7 +21,7 @@ public class CmdBalance extends Cmd {
 	
 	private void console(CommandSender executor, String[] args) {
 		if(args.length != 1) {
-			ChatUtil.send(executor, "&4Usage: /balance <player>");
+			ChatUtil.send(executor, "&4Usage: /" + getLowered() + " <player>");
 			return;
 		}
 		sendOther(executor, args[0]);
@@ -32,7 +32,7 @@ public class CmdBalance extends Cmd {
 			if(args[0].trim().equals(player.getDisplayName().trim())) sendSelf(player);
 			else sendOther(player, args[0].trim());
 		} else if(args.length == 0) sendSelf(player);
-		else ChatUtil.send(player, "&4Usage: /balance [player]");
+		else ChatUtil.send(player, "&4Usage: /" + getLowered() + " [player]");
 	}
 	
 	private void sendSelf(Player ply) {

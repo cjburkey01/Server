@@ -8,7 +8,10 @@ public class MainServer extends JavaPlugin {
 	
 	public static MainServer instance;
 	
-	public void onEnable() {
+	public void onEnable() { init(); }
+	public void onDisable() { deinit(); }
+	
+	public void init() {
 		instance = this;
 		
 		this.getConfig().options().copyDefaults(true);
@@ -23,7 +26,7 @@ public class MainServer extends JavaPlugin {
 		Logger.log("Initialization complete.");
 	}
 	
-	public void onDisable() {
+	public void deinit() {
 		Modules.deInitializeModules();
 		Logger.log("Deinitialization complete.");
 	}
