@@ -28,19 +28,21 @@ public class CmdBalance extends Cmd {
 	}
 	
 	private void player(Player player, String[] args) {
-		if(args.length == 1) sendOther(player, args[0]);
-		else if(args.length == 0) sendSelf(player);
+		if(args.length == 1) {
+			if(args[0].trim().equals(player.getDisplayName().trim())) sendSelf(player);
+			else sendOther(player, args[0].trim());
+		} else if(args.length == 0) sendSelf(player);
 		else ChatUtil.send(player, "&4Usage: /balance [player]");
 	}
 	
 	private void sendSelf(Player ply) {
-		ChatUtil.send(ply, "&2You have $" + ModuleCurrency.stylize(Modules.getModuleCurrency().getMoney(ply.getUniqueId())) + " in your account.");
+		ChatUtil.send(ply, "&2You have " + ModuleCurrency.stylize(Modules.getModuleCurrency().getMoney(ply.getUniqueId())) + " in your account.");
 	}
 	
 	private void sendOther(CommandSender executor, String name) {
 		UUID id = Modules.getModuleCacher().fromName(name);
 		if(id != null) {
-			ChatUtil.send(executor, "&2That player has $" + ModuleCurrency.stylize(Modules.getModuleCurrency().getMoney(id)) + " in their account.");
+			ChatUtil.send(executor, "&2That player has " + ModuleCurrency.stylize(Modules.getModuleCurrency().getMoney(id)) + " in their account.");
 			return;
 		}
 		ChatUtil.send(executor, "&4That player has not joined the server.");

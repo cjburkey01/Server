@@ -34,7 +34,7 @@ public class ModuleDataHandler {
 		try {
 			int val = Integer.parseInt(get(key));
 			return val;
-		} catch(Exception e) { Logger.log("Couldn't parse key to int: " + key); }
+		} catch(Exception e) { Logger.log("Couldn't parse to int: " + key); }
 		return FAIL_INT;
 	}
 	
@@ -42,7 +42,7 @@ public class ModuleDataHandler {
 		try {
 			double val = Double.parseDouble(get(key));
 			return val;
-		} catch(Exception e) { Logger.log("Couldn't parse key to int: " + key); }
+		} catch(Exception e) { Logger.log("Couldn't parse to double: " + key); }
 		return FAIL_DOUBLE;
 	}
 	

@@ -6,7 +6,7 @@ import com.cjburkey.server.Logger;
 import com.cjburkey.server.MainServer;
 import com.cjburkey.server.cmd.CommandHandler;
 import com.cjburkey.server.data.ModuleDataHandler;
-import com.cjburkey.server.event.EventPlayerJoin;
+import com.cjburkey.server.event.EventPlayerCache;
 import com.cjburkey.server.module.Module;
 
 public class ModulePlayer extends Module {
@@ -19,6 +19,10 @@ public class ModulePlayer extends Module {
 		String out = data.get(username);
 		if(out != null) return UUID.fromString(out);
 		return null;
+	}
+	
+	public boolean hasJoined(Player ply) {
+		return fromName(ply.getDisplayName()) != null;
 	}
 	
 	public void join(Player ply) {
@@ -44,7 +48,7 @@ public class ModulePlayer extends Module {
 	}
 
 	public void onLoad() {
-		MainServer.instance.getServer().getPluginManager().registerEvents(new EventPlayerJoin(), MainServer.instance);
+		MainServer.instance.getServer().getPluginManager().registerEvents(new EventPlayerCache(), MainServer.instance);
 		data = new ModuleDataHandler(this);
 		cmds = new CommandHandler();
 		data.loadFromDisk();
