@@ -1,0 +1,15 @@
+name: ServerSoftware
+main: com.cjburkey.server.MainServer
+author: CJ Burkey
+database: false
+prefix: Thrutus
+version: 1.0.0
+
+commands:
+  balance:
+    description: Check your account balance.
+    usage: /<command> [player]
+    permission: money.balance
+    permission-message: '§4You do not have permission to use /balance'
+
+permissions:
