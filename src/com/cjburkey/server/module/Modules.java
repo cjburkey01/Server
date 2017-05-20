@@ -1,7 +1,8 @@
 package com.cjburkey.server.module;
 
-import com.cjburkey.server.modules.ModulePlayer;
 import com.cjburkey.server.modules.ModuleCurrency;
+import com.cjburkey.server.modules.ModuleHome;
+import com.cjburkey.server.modules.ModulePlayer;
 
 public class Modules {
 	
@@ -9,13 +10,16 @@ public class Modules {
 	
 	private static ModulePlayer modCache;
 	private static ModuleCurrency modCurrency;
+	private static ModuleHome modHome;
 	
 	private static final void addMods() {
 		modCache = new ModulePlayer();
 		modCurrency = new ModuleCurrency();
+		modHome = new ModuleHome();
 		
 		modMan.addModule(modCache);
 		modMan.addModule(modCurrency);
+		modMan.addModule(modHome);
 	}
 	
 	public static final void initializeModules() {
@@ -40,8 +44,9 @@ public class Modules {
 	public static Module[] getMods() {
 		return modMan.getMods();
 	}
-	
-	public static final ModuleCurrency getModuleCurrency() { return modCurrency; }
+
 	public static final ModulePlayer getModuleCacher() { return modCache; }
+	public static final ModuleCurrency getModuleCurrency() { return modCurrency; }
+	public static final ModuleHome getModuleHome() { return modHome; }
 	
 }

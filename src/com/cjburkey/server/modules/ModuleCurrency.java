@@ -7,6 +7,7 @@ import com.cjburkey.server.cmd.CommandHandler;
 import com.cjburkey.server.cmds.CmdBalance;
 import com.cjburkey.server.data.ModuleDataHandler;
 import com.cjburkey.server.module.Module;
+import com.cjburkey.server.module.Modules;
 
 public class ModuleCurrency extends Module {
 	
@@ -51,7 +52,7 @@ public class ModuleCurrency extends Module {
 	}
 
 	public Module[] getRequiredModules() {
-		return new Module[] {  };
+		return new Module[] { Modules.getModuleCacher() };
 	}
 	
 	public ModuleDataHandler getDataHandler() {

@@ -12,4 +12,12 @@ public abstract class Module {
 	public abstract void onLoad();
 	public abstract void onUnload();
 	
+	public boolean equals(Object otherObj) {
+		if(otherObj instanceof Module) {
+			Module other = (Module) otherObj;
+			return other.getName().equals(getName());
+		}
+		return false;
+	}
+	
 }

@@ -22,7 +22,7 @@ public class ModuleDataHandler {
 	private Map<String, String> data;
 	
 	public ModuleDataHandler(Module m) {
-		dataFile = new File(MainServer.instance.getDataFolder(), m.getName().toLowerCase());
+		dataFile = new File(MainServer.instance.getDataFolder(), "/data/" + m.getName().toLowerCase() + ".dat");
 		data = new HashMap<>();
 	}
 	
@@ -48,6 +48,10 @@ public class ModuleDataHandler {
 	
 	public void set(String key, Object value) {
 		data.put(key, value + "");
+	}
+	
+	public void unset(String key) {
+		data.remove(key);
 	}
 	
 	public void saveToDisk() {

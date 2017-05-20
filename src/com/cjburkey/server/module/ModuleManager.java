@@ -23,6 +23,21 @@ public class ModuleManager {
 				m.onLoad();
 			}
 		}
+		requireCheck();
+	}
+	
+	private void requireCheck() {
+		Logger.log("Checking logger requirements.");
+		for(Module m : mods) {
+			Module[] required = m.getRequiredModules().clone();
+			for(Module req : required) {
+				if(!isModuleLoaded(req)) {
+					unLoadModule(m);
+					Logger.log("Module not found: " + req.getName());
+				}
+			}
+		}
+		Logger.log("Checked requirements.");
 	}
 	
 	public void unLoadModules() {
@@ -34,10 +49,22 @@ public class ModuleManager {
 		}
 	}
 	
+	public void unLoadModule(Module m) {
+		m.onUnload();
+		mods.remove(m);
+	}
+	
 	public void clear() {
 		if(mods != null) {
 			mods.clear();
 		}
+	}
+	
+	public boolean isModuleLoaded(Module m) {
+		for(Module mod : mods) {
+			if(m.equals(mod)) return true;
+		}
+		return false;
 	}
 	
 	public Module[] getMods() {

@@ -11,5 +11,23 @@ commands:
     usage: /<command> [player]
     permission: money.balance
     permission-message: '§4You do not have permission to use /balance'
+  home:
+    description: Teleport to home.
+    usage: /<command>
+    permission: home.tp
+    permission-message: '§4You do not have permission to use /home'
+  sethome:
+    description: Set home.
+    usage: /<command>
+    permission: home.set
+    permission-message: '§4You do not have permission to use /sethome'
+  delhome:
+    description: Delete home.
+    usage: /<command>
+    permission: home.del
+    permission-message: '§4You do not have permission to use /delhome'
 
 permissions:
+  money.balance:
+    description: Allow usage of /balance
+    default: true
