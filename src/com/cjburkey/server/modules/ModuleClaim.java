@@ -3,11 +3,14 @@ package com.cjburkey.server.modules;
 import java.util.UUID;
 import org.bukkit.entity.Player;
 import com.cjburkey.server.Logger;
+import com.cjburkey.server.MainServer;
 import com.cjburkey.server.cmd.CommandHandler;
 import com.cjburkey.server.cmds.CmdClaimChunk;
 import com.cjburkey.server.cmds.CmdUnclaimChunk;
 import com.cjburkey.server.cmds.CmdWhoClaim;
 import com.cjburkey.server.data.ModuleDataHandler;
+import com.cjburkey.server.event.EventBreak;
+import com.cjburkey.server.event.EventPlace;
 import com.cjburkey.server.module.Module;
 import com.cjburkey.server.module.Modules;
 import com.cjburkey.server.pos.ChunkPosition;
@@ -73,6 +76,9 @@ public class ModuleClaim extends Module {
 		cmdClaim = new CmdClaimChunk();
 		cmdUnClaim = new CmdUnclaimChunk();
 		cmdWhoClaim = new CmdWhoClaim();
+		
+		MainServer.instance.getServer().getPluginManager().registerEvents(new EventBreak(), MainServer.instance);
+		MainServer.instance.getServer().getPluginManager().registerEvents(new EventPlace(), MainServer.instance);
 		
 		cmds.addCmd(cmdClaim);
 		cmds.addCmd(cmdUnClaim);

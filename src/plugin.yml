@@ -46,6 +46,21 @@ commands:
     usage: /<command>
     permission: chunk.whoclaim
     permission-message: '§4You do not have permission to use /whoclaimed'
+  tpa:
+    description: Request permission to teleport.
+    usage: /<command> <player>
+    permission: tp.request
+    permission-message: '§4You do not have permission to use /tpa'
+  tpaccept:
+    description: Allow teleport.
+    usage: /<command>
+    permission: tp.accept
+    permission-message: '§4You do not have permission to use /tpaccept'
+  tpdeny:
+    description: Deny teleport.
+    usage: /<command>
+    permission: tp.deny
+    permission-message: '§4You do not have permission to use /deny'
 
 permissions:
   thrutus.refresh:
@@ -71,4 +86,13 @@ permissions:
     default: true
   chunk.whoclaim:
     description: Allow usage of /whoclaimed
+    default: true
+  tp.request:
+    description: Allow usage of /tpa
+    default: true
+  tp.accept:
+    description: Allow usage of /tpaccept
+    default: true
+  tp.deny:
+    description: Allow usage of /tpdeny
     default: true
